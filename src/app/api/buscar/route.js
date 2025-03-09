@@ -20,7 +20,7 @@ export async function GET(req) {
 
     // Extrair os parâmetros da URL
     const { searchParams } = new URL(req.url);
-    const label = searchParams.get("label"); 
+    const label = searchParams.get("label");
 
     const query = `
       MATCH (nodes:${label})
@@ -40,7 +40,7 @@ export async function GET(req) {
     return NextResponse.json(
       {
         message: "success",
-        data: result.records[0]._fields
+        data: result.records
       },
       { status: 200 }
     );

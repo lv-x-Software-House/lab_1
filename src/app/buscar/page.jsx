@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from 'react';
 import { neo4j_buscar } from '@/services/page_controllers/controller_buscar';
@@ -10,10 +10,8 @@ export default function Buscar() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-
         const result = await neo4j_buscar("Frase");
         setData(result);
-        console.log("Console do que retorna na página", result);
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
       } finally {
@@ -34,10 +32,11 @@ export default function Buscar() {
 
   return (
     <div>
-      <h1>Laboratório</h1>
       <ul>
-        {data.map((item) => (
-          <li key={item.id}>{item.name}</li>
+        {data.data.map((item, index) => (
+          item._fields.map((field, idx) => (
+            <li key={`${index}-${idx}`}>{field.properties.Input}</li>
+          ))
         ))}
       </ul>
     </div>
