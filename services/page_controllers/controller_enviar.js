@@ -1,8 +1,3 @@
-const baseUrl = 
-        typeof window !== 'undefined' && window.location.origin
-          ? window.location.origin
-          : process.env.NEXT_PUBLIC_BASE_URL;
-
 // Salvar Zeni Agent
 export const neo4j_enviar = async (enviar) => {
     

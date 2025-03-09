@@ -13,47 +13,44 @@ const driver = neo4j.driver(
   )
 );
 
-export async function POST(req) {
+export async function GET(req) {
   const session = driver.session();
-
+  
   try {
-    // Extrair os dados do corpo da requisição
-    const formData = await req.formData();
-    const session_data = formData.get('enviar');
+
+    // Extrair os parâmetros da URL
+    const { searchParams } = new URL(req.url);
+    const label = searchParams.get("label"); 
 
     const query = `
-    CREATE (x:Frase {
-        Input: $input
-    })
-    RETURN x
+      MATCH (nodes:${label})
+      RETURN nodes
     `;
 
-    const params = {
-        input: session_data
-    };
-
     // Executar a query
-    const result = await session.run(query, params);
+    const result = await session.run(query);
 
-    if (result.records.length > 0) {
-      return NextResponse.json(
-        { message: "success" },
-        { status: 200 }
-      );
-
-    } else {
+    if (result.records.length === 0) {
       return NextResponse.json(
         { message: "error" },
         { status: 404 }
       );
     }
 
+    return NextResponse.json(
+      {
+        message: "success",
+        data: result.records[0]._fields
+      },
+      { status: 200 }
+    );
+
   } catch (error) {
     console.error("catch error:", error);
     return NextResponse.json(
-      {
+      { 
         error: "catch error:",
-        message: error.message
+        message: error.message 
       },
       { status: 500 }
     );

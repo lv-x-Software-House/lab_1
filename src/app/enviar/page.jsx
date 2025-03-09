@@ -1,23 +1,27 @@
+// Diretiva use client
 'use client';
 
+// Sentenças de importação
 import { useState } from 'react';
-
-// 1. Importação do componente Modal
 import Modal from '@/src/components/modal/modal.jsx';
 
-export default function Home() {
-  // 2. Definição de state para controle do estado do modal
+// Export padrão da página
+export default function Enviar() {
+  
+  // Definição de states
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // 3. Definição de funções de controle de estado
+  // Funções de controle de state
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+
+  // Definição de funções
   const handleButtonClick = () => {
-    console.log("Botão clicado!");
-    openModal();  // Abre o modal quando o botão for clicado
+    openModal();
   };
 
+// Início da parte visual da página
   return (
     <div>
       <h1>Laboratório</h1>
@@ -27,10 +31,10 @@ export default function Home() {
         onClick={handleButtonClick}
         className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
       >
-        Clique aqui
+        Enviar Informações
       </button>
 
-      {/* 4. Renderização condicional do modal */}
+      {/* Renderização condicional do modal */}
       {isModalOpen && (
         <Modal onClose={closeModal}> </Modal>
       )}

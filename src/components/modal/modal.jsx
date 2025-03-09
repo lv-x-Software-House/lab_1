@@ -7,7 +7,7 @@ export default function Modal({ onClose }) {
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (e) => {
-    setInputValue(e.target.value); // Atualiza o valor do input
+    setInputValue(e.target.value);
   };
 
   const handleSubmit = () => {
@@ -17,6 +17,7 @@ export default function Modal({ onClose }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-20">
       <div className="w-[90%] h-[90%] bg-white rounded-lg shadow-lg relative p-6">
+        
         {/* Botão de Fechar */}
         <button
           className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-xl"
@@ -27,7 +28,7 @@ export default function Modal({ onClose }) {
         
         {/* Conteúdo do Modal */}
         <div className="h-full flex flex-col justify-center items-center">
-          <h2 className="text-xl mb-4">Digite algo no campo abaixo</h2>
+          <h2 className="text-xl mb-4 text-black">Digite algo no campo abaixo</h2>
 
           {/* Campo de Input */}
           <input

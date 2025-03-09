@@ -17,9 +17,10 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <div className="flex h-screen">
-          {/* Sidebar fixo na esquerda */}
+          
           <Sidebar />  
-          {/* Conteúdo da página */}
+          
+          
           <main className="flex-1 p-4">{children}</main>
         </div>
       </body>
