@@ -1,13 +1,17 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const baseUrl = 
         typeof window !== 'undefined' && window.location.origin
           ? window.location.origin
           : process.env.NEXT_PUBLIC_BASE_URL;
 
 // Validar usuário
-export const neo4j_auth_validate = async (username, password) => {
+export const neo4j_buscar = async (label) => {
           try {
             const response = await fetch(
-              `${baseUrl}/api/neo4j/auth_validate?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+              `${baseUrl}/api/buscar?label=${encodeURIComponent(label)}`,
               {
                 method: 'GET',
                 headers: {
@@ -26,4 +30,3 @@ export const neo4j_auth_validate = async (username, password) => {
         throw error;
       }
     };
-
